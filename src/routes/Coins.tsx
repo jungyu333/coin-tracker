@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { HomeHeaderContainer, LogoContainer } from "./Home";
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
