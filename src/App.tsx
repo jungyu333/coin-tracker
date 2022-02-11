@@ -1,6 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Monda&family=Rowdies:wght@300&display=swap');
@@ -32,6 +33,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  background-color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor}
 }
 ol, ul {
 	list-style: none;
@@ -59,6 +62,7 @@ function App() {
     <>
       <GlobalStyle />
       <Router />
+      <ReactQueryDevtools />
     </>
   );
 }
