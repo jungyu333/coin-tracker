@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { FaBitcoin } from "react-icons/fa";
 import { useQuery } from "react-query";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
+import Chart from "./Chart";
 import { Container } from "./Coins";
 import { HomeHeaderContainer, LogoContainer } from "./Home";
 
@@ -65,7 +67,7 @@ interface RouteState {
   name: string;
 }
 
-interface RouteParams {
+export interface RouteParams {
   coinId: string;
 }
 
@@ -120,9 +122,64 @@ const PercentInfo = styled.div`
   display: flex;
 `;
 
+const MainContentContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 70vw;
+  height: 30vh;
+  margin-top: 10vh;
+`;
+
+const Button = styled.div`
+  font-size: 1.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
+  padding: 3vh 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.3);
+    display: block;
+    &:hover {
+      color: ${(props) => props.theme.accentColor};
+    }
+  }
+`;
+
+const DescripContainer = styled.div`
+  display: flex:
+  flex-direction: column;
+  width: 50%;
+`;
+
+const DesTitle = styled.h1`
+  font-size: 1.7rem;
+  text-align: center;
+  margin-bottom: 3vh;
+`;
+
+const DesContent = styled.div`
+  height: 100%;
+  margin-top: 5vh;
+  font-weight: 300;
+  font-size: 1.4rem;
+  overflow-y: auto;
+  text-align: center;
+`;
+
+const ChartContainer = styled.div``;
+
 function Coin() {
   const { state } = useLocation<RouteState>();
   const { coinId } = useParams<RouteParams>();
+  const [show, setShow] = useState(true);
+
+  function onClickButton() {
+    setShow(false);
+  }
   const { isLoading: infoLoading, data: infoData } = useQuery<ICoinInfo>(
     ["info", coinId],
     () => {
@@ -152,7 +209,7 @@ function Coin() {
       ) : (
         <MainContainer>
           <MainHeader>
-            <Title>{state.name}</Title>
+            <Title>{priceData?.name}</Title>
             <LastUpdate>Last Update: {priceData?.last_updated}</LastUpdate>
             <CoinInfo>
               <PercentInfo>
@@ -176,6 +233,23 @@ function Coin() {
               <p>Price : {priceData?.quotes.USD.price?.toFixed(3)}$</p>
             </CoinInfo>
           </MainHeader>
+          <MainContentContainer>
+            {show ? (
+              <Button>
+                <Link onClick={onClickButton} to={`/coinlist/${coinId}`}>
+                  Open chart!
+                </Link>
+              </Button>
+            ) : (
+              <Chart show={show} setShow={setShow} />
+            )}
+            <DescripContainer>
+              <DesTitle>This Coin?</DesTitle>
+              <DesContent>
+                {infoData?.description === "" ? "none!" : infoData?.description}
+              </DesContent>
+            </DescripContainer>
+          </MainContentContainer>
         </MainContainer>
       )}
     </Container>
