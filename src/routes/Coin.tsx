@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaBitcoin } from "react-icons/fa";
 import { useQuery } from "react-query";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import Chart from "./Chart";
@@ -61,10 +61,6 @@ interface ICoinPrice {
       percent_from_price_ath: number;
     };
   };
-}
-
-interface RouteState {
-  name: string;
 }
 
 export interface RouteParams {
@@ -170,10 +166,7 @@ const DesContent = styled.div`
   text-align: center;
 `;
 
-const ChartContainer = styled.div``;
-
 function Coin() {
-  const { state } = useLocation<RouteState>();
   const { coinId } = useParams<RouteParams>();
   const [show, setShow] = useState(true);
 
@@ -241,7 +234,7 @@ function Coin() {
                 </Link>
               </Button>
             ) : (
-              <Chart show={show} setShow={setShow} />
+              <Chart coinId={coinId} show={show} setShow={setShow} />
             )}
             <DescripContainer>
               <DesTitle>This Coin?</DesTitle>
