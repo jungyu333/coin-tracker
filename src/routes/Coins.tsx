@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
-import { HomeHeaderContainer, LogoContainer } from "./Home";
+import { HomeHeaderContainer, LogoContainer, opacityAnimation } from "./Home";
 import HomeButton from "./HomeButton";
 import ToggleButton from "./ToggleButton";
 
@@ -24,6 +24,7 @@ const Header = styled.header`
   align-items: center;
   margin: 5vh auto;
   position: relative;
+  animation: ${opacityAnimation} 1s ease-in-out;
 `;
 
 const Title = styled.h1`
@@ -35,6 +36,7 @@ const CoinList = styled.ul`
   height: 55vh;
   width: 70%;
   overflow-y: scroll;
+  animation: ${opacityAnimation} 2s ease-in-out;
 `;
 
 const Coin = styled.li`

@@ -20,6 +20,20 @@ const Bounce = keyframes`
   }
 `;
 
+const HomeHeaderAnimation = keyframes`
+  from {
+    transform: translateY(-10vh);
+    transition: 2s;
+  } 
+`;
+
+export const opacityAnimation = keyframes`
+  from {
+    opacity:0;
+  }to {
+    opacity:1;
+  }
+`;
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -38,6 +52,7 @@ export const HomeHeaderContainer = styled.header`
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   position: relative;
+  animation: ${HomeHeaderAnimation} 1s ease-in-out;
 `;
 
 const HomeMainContainer = styled.main`
@@ -48,6 +63,7 @@ const HomeMainContainer = styled.main`
   padding: 0 5vh;
   width: 100vw;
   height: 85vh;
+  animation: ${opacityAnimation} 1s ease-in-out;
   h1 {
     font-size: 3rem;
     margin-bottom: 5vh;
@@ -89,6 +105,7 @@ function Home() {
         <ToggleButton />
         <HomeButton />
       </HomeHeaderContainer>
+
       <HomeMainContainer>
         <h1>COIN TRACKER</h1>
         <Link to="/coinlist">click here!</Link>

@@ -2,7 +2,7 @@ import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
-const ButtonAnimation = keyframes`
+export const ButtonAnimation = keyframes`
   100% {
     transform: translateY(-10px);
     transition: 1s;

@@ -2,12 +2,12 @@ import { FaBitcoin } from "react-icons/fa";
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import { isShowState } from "../atoms";
 import Chart from "./Chart";
 import { Container, Loading } from "./Coins";
-import { HomeHeaderContainer, LogoContainer } from "./Home";
+import { HomeHeaderContainer, LogoContainer, opacityAnimation } from "./Home";
 import HomeButton from "./HomeButton";
 import ToggleButton from "./ToggleButton";
 
@@ -70,6 +70,16 @@ export interface RouteParams {
   coinId: string;
 }
 
+const UpAnimation = keyframes`
+  from{
+    transform: translateY(3vh);
+    transition: 2s;
+    opacity: 0;
+  }to {
+    opacity: 1;
+  }
+`;
+
 const MainContainer = styled.main`
   display: flex;
   align-items: center;
@@ -84,6 +94,7 @@ const MainHeader = styled.div`
   width: 90vw;
   margin: 6vh 5vw;
   border-bottom: 0.5px solid ${(props) => props.theme.lineColor};
+  animation: ${opacityAnimation} 1.5s ease-in-out;
 `;
 
 const Title = styled.h1`
@@ -139,6 +150,7 @@ const Button = styled.div`
   align-items: center;
   height: 10vh;
   margin-left: 10vw;
+  animation: ${UpAnimation} 1s ease-in-out;
   a {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.3);
@@ -155,6 +167,7 @@ const DescripContainer = styled.div`
   justify-content: center
   width: 50%;
   margin-left:5vw;
+  animation: ${UpAnimation} 1s ease-in-out;
 `;
 
 const DesTitle = styled.h1`
