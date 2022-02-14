@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { HomeHeaderContainer, LogoContainer } from "./Home";
+import HomeButton from "./HomeButton";
 import ToggleButton from "./ToggleButton";
 
 export const Container = styled.div`
@@ -11,6 +12,10 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const Loading = styled.span`
+  margin-top: 20vh;
 `;
 
 const Header = styled.header`
@@ -41,6 +46,7 @@ const Coin = styled.li`
   align-items: center;
   justify-content: space-between;
   margin: 2vh auto;
+
   a {
     text-decoration: none;
     display: flex;
@@ -50,6 +56,10 @@ const Coin = styled.li`
     border-radius: 15px;
     padding: 1vh 2vh;
     margin-right: 3vh;
+    &:hover {
+      color: ${(props) => props.theme.accentColor};
+      transition: 1s;
+    }
   }
   img {
     width: 30px;
@@ -84,12 +94,13 @@ function Coins() {
           <h1>Coin Tracker</h1>
         </LogoContainer>
         <ToggleButton />
+        <HomeButton />
       </HomeHeaderContainer>
       <Header>
         <Title>Coin List</Title>
       </Header>
       {isLoading ? (
-        <span>"Loading..."</span>
+        <Loading>Loading...</Loading>
       ) : (
         <CoinList>
           {data?.slice(0, 100).map((coin) => (

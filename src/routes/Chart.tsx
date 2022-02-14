@@ -1,11 +1,10 @@
 import ApexCharts from "react-apexcharts";
-import { privateDecrypt } from "crypto";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinHistory } from "../api";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "../atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isDarkAtom, isShowState } from "../atoms";
 
 interface ICoinHistory {
   time_open: string;
@@ -20,8 +19,6 @@ interface ICoinHistory {
 
 interface ChartProps {
   coinId: string;
-  show: boolean;
-  setShow: any;
 }
 const BackButton = styled.div`
   a {
@@ -38,18 +35,23 @@ const BackButton = styled.div`
   margin-bottom: 2vh;
 `;
 
+const ChartLoading = styled.span`
+  margin-top: 10vh;
+  width: 100%;
+  text-align: center;
+`;
 const ChartContainer = styled.div`
-  width: 60%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 10vw;
 `;
 
 function Chart(props: ChartProps) {
   const isDark = useRecoilValue(isDarkAtom);
+  const setIsShow = useSetRecoilState(isShowState);
   function onClickBack() {
-    props.setShow(true);
+    setIsShow((prev) => !prev);
   }
 
   const { isLoading, data } = useQuery<ICoinHistory[]>(
@@ -60,7 +62,7 @@ function Chart(props: ChartProps) {
   return (
     <>
       {isLoading ? (
-        <span>Chart Loading...</span>
+        <ChartLoading>Chart Loading...</ChartLoading>
       ) : (
         <ChartContainer>
           <BackButton>

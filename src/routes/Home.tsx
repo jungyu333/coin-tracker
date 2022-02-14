@@ -1,9 +1,24 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FaBitcoin } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import ToggleButton from "./ToggleButton";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "../atoms";
+import HomeButton from "./HomeButton";
+
+const Bounce = keyframes`
+  100% {
+    top: -20px;
+    text-shadow: 0 1px 0 #CCC,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 #CCC,
+                 0 5px 0 #CCC,
+                 0 6px 0 #CCC,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 #CCC,
+                 0 50px 25px rgba(0, 0, 0, .2);
+  }
+`;
 
 const Container = styled.div`
   width: 100vw;
@@ -22,6 +37,7 @@ export const HomeHeaderContainer = styled.header`
   border-bottom: 1px solid ${(props) => props.theme.lineColor};
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  position: relative;
 `;
 
 const HomeMainContainer = styled.main`
@@ -33,12 +49,12 @@ const HomeMainContainer = styled.main`
   width: 100vw;
   height: 85vh;
   h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 5vh;
-    border: 2px solid ${(props) => props.theme.lineColor};
-    padding: 5vh;
-    border-radius: 20px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    animation: ${Bounce} 0.3s ease infinite alternate;
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+      0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent,
+      0 8px 0 transparent, 0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
   }
   a {
     text-decoration: none;
@@ -47,6 +63,7 @@ const HomeMainContainer = styled.main`
     color: rgba(0, 0, 0, 0.3);
     &:hover {
       color: ${(props) => props.theme.accentColor};
+      transition: 1s;
     }
   }
 `;
@@ -70,6 +87,7 @@ function Home() {
           <h1>Coin Tracker</h1>
         </LogoContainer>
         <ToggleButton />
+        <HomeButton />
       </HomeHeaderContainer>
       <HomeMainContainer>
         <h1>COIN TRACKER</h1>
