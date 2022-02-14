@@ -1,11 +1,10 @@
 import ApexCharts from "react-apexcharts";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { fetchCoinHistory } from "../api";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isDarkAtom, isShowState } from "../atoms";
-import { UpAnimation } from "./Coin";
 
 interface ICoinHistory {
   time_open: string;
@@ -21,6 +20,16 @@ interface ICoinHistory {
 interface ChartProps {
   coinId: string;
 }
+
+const ChartAnimation = keyframes`
+  from {
+    transform: translateY(3vh);
+    opacity:0;
+  }to {
+    opacity:1;
+  }
+`;
+
 const BackButton = styled.div`
   a {
     text-decoration: none;
@@ -31,6 +40,7 @@ const BackButton = styled.div`
     color: rgba(0, 0, 0, 0.3);
     &:hover {
       color: ${(props) => props.theme.accentColor};
+      transition: 1s;
     }
   }
   margin-bottom: 2vh;
@@ -46,7 +56,7 @@ const ChartContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: ${UpAnimation} 1s ease-in-out;
+  animation: ${ChartAnimation} 1s ease-in-out;
 `;
 
 function Chart(props: ChartProps) {

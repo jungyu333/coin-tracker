@@ -70,13 +70,12 @@ export interface RouteParams {
   coinId: string;
 }
 
-export const UpAnimation = keyframes`
-  from{
+const upAnimation = keyframes`
+  from {
     transform: translateY(3vh);
-    transition: 2s;
-    opacity: 0;
+    opacity:0;
   }to {
-    opacity: 1;
+    opacity:1;
   }
 `;
 
@@ -150,14 +149,14 @@ const Button = styled.div`
   align-items: center;
   height: 10vh;
   margin-left: 10vw;
-  animation: ${UpAnimation} 1s ease-in-out;
+  animation: ${upAnimation} 1s ease-in-out;
   a {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.3);
     display: block;
     &:hover {
       color: ${(props) => props.theme.accentColor};
-      transition: 2s;
+      transition: 1s;
     }
   }
 `;
@@ -168,7 +167,7 @@ const DescripContainer = styled.div`
   justify-content: center
   width: 50%;
   margin-left:5vw;
-  animation: ${UpAnimation} 1s ease-in-out;
+  animation: ${upAnimation} 1s ease-in-out;
 `;
 
 const DesTitle = styled.h1`

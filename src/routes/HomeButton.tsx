@@ -1,6 +1,8 @@
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled, { keyframes } from "styled-components";
+import { isShowState } from "../atoms";
 
 export const ButtonAnimation = keyframes`
   100% {
@@ -26,9 +28,13 @@ const HomeBtn = styled.div`
 `;
 
 function HomeButton() {
+  const setIsShow = useSetRecoilState(isShowState);
+  function onClick() {
+    setIsShow(true);
+  }
   return (
     <HomeBtn>
-      <Link to={`/`}>
+      <Link onClick={onClick} to={`/`}>
         <FaHome />
       </Link>
     </HomeBtn>
