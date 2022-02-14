@@ -34,12 +34,14 @@ export const opacityAnimation = keyframes`
     opacity:1;
   }
 `;
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
 `;
+
 export const HomeHeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
@@ -105,7 +107,6 @@ function Home() {
         <ToggleButton />
         <HomeButton />
       </HomeHeaderContainer>
-
       <HomeMainContainer>
         <h1>COIN TRACKER</h1>
         <Link to="/coinlist">click here!</Link>

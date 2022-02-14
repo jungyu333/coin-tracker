@@ -70,7 +70,7 @@ export interface RouteParams {
   coinId: string;
 }
 
-const UpAnimation = keyframes`
+export const UpAnimation = keyframes`
   from{
     transform: translateY(3vh);
     transition: 2s;
@@ -157,6 +157,7 @@ const Button = styled.div`
     display: block;
     &:hover {
       color: ${(props) => props.theme.accentColor};
+      transition: 2s;
     }
   }
 `;

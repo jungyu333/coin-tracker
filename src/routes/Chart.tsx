@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { fetchCoinHistory } from "../api";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isDarkAtom, isShowState } from "../atoms";
+import { UpAnimation } from "./Coin";
 
 interface ICoinHistory {
   time_open: string;
@@ -45,6 +46,7 @@ const ChartContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: ${UpAnimation} 1s ease-in-out;
 `;
 
 function Chart(props: ChartProps) {
