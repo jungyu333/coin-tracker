@@ -7,6 +7,7 @@ import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import Chart from "./Chart";
 import { Container } from "./Coins";
 import { HomeHeaderContainer, LogoContainer } from "./Home";
+import ToggleButton from "./ToggleButton";
 
 interface ICoinInfo {
   id: string;
@@ -80,7 +81,7 @@ const MainHeader = styled.div`
   flex-direction: column;
   width: 90vw;
   margin: 6vh 5vw;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 0.5px solid ${(props) => props.theme.lineColor};
 `;
 
 const Title = styled.h1`
@@ -101,7 +102,7 @@ const CoinInfo = styled.div`
   display: flex;
   justify-content: space-between;
   span {
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid ${(props) => props.theme.lineColor};
     padding: 0.5vh;
     border-radius: 15px;
     margin: 0 0.5vh;
@@ -128,7 +129,7 @@ const MainContentContainer = styled.div`
 
 const Button = styled.div`
   font-size: 1.7rem;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: 1px solid ${(props) => props.theme.lineColor};
   border-radius: 30px;
   padding: 3vh 3vw;
   display: flex;
@@ -195,7 +196,7 @@ function Coin() {
           <FaBitcoin />
           <h1>Coin Tracker</h1>
         </LogoContainer>
-        <div>Toggle Switch</div>
+        <ToggleButton />
       </HomeHeaderContainer>
       {isLoading ? (
         <span>Loading...</span>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { HomeHeaderContainer, LogoContainer } from "./Home";
+import ToggleButton from "./ToggleButton";
 
 export const Container = styled.div`
   display: flex;
@@ -34,20 +35,18 @@ const CoinList = styled.ul`
 const Coin = styled.li`
   width: 100%;
   height: 8vh;
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: 1px solid ${(props) => props.theme.lineColor};
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 2vh auto;
-  color: black;
   a {
     text-decoration: none;
     display: flex;
     align-items: center;
     font-size: 1.2rem;
-    color: black;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid ${(props) => props.theme.lineColor};
     border-radius: 15px;
     padding: 1vh 2vh;
     margin-right: 3vh;
@@ -84,7 +83,7 @@ function Coins() {
           <FaBitcoin />
           <h1>Coin Tracker</h1>
         </LogoContainer>
-        <div>Toggle Switch</div>
+        <ToggleButton />
       </HomeHeaderContainer>
       <Header>
         <Title>Coin List</Title>

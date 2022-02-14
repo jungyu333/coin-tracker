@@ -2,7 +2,9 @@ import React from "react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { theme } from "./theme";
+import { darktheme, lighttheme } from "./theme";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -23,6 +25,8 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	vertical-align: baseline;
+  background-color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor}
   
 }
 /* HTML5 display-role reset for older browsers */
@@ -32,8 +36,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  background-color: ${(props) => props.theme.bgColor};
-  color: ${(props) => props.theme.textColor}
+  
 }
 ol, ul {
 	list-style: none;
@@ -57,9 +60,10 @@ table {
 
 `;
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={isDark ? darktheme : lighttheme}>
         <GlobalStyle />
         <Router />
         <ReactQueryDevtools />

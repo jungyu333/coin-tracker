@@ -4,6 +4,8 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinHistory } from "../api";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 interface ICoinHistory {
   time_open: string;
@@ -25,7 +27,7 @@ const BackButton = styled.div`
   a {
     text-decoration: none;
     font-size: 1.4rem;
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    border: 1px solid ${(props) => props.theme.lineColor};
     border-radius: 20px;
     padding: 1vh;
     color: rgba(0, 0, 0, 0.3);
@@ -45,6 +47,7 @@ const ChartContainer = styled.div`
 `;
 
 function Chart(props: ChartProps) {
+  const isDark = useRecoilValue(isDarkAtom);
   function onClickBack() {
     props.setShow(true);
   }
@@ -83,9 +86,9 @@ function Chart(props: ChartProps) {
               },
             ]}
             options={{
-              // theme: {
-              //   mode: isDark ? "dark" : "light",
-              // },
+              theme: {
+                mode: isDark ? "dark" : "light",
+              },
               chart: {
                 toolbar: {
                   show: false,

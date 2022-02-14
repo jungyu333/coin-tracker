@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { FaBitcoin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ToggleButton from "./ToggleButton";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 const Container = styled.div`
   width: 100vw;
@@ -16,7 +19,7 @@ export const HomeHeaderContainer = styled.header`
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid ${(props) => props.theme.lineColor};
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 `;
@@ -32,7 +35,7 @@ const HomeMainContainer = styled.main`
   h1 {
     font-size: 2rem;
     margin-bottom: 5vh;
-    border: 2px solid rgba(0, 0, 0, 0.5);
+    border: 2px solid ${(props) => props.theme.lineColor};
     padding: 5vh;
     border-radius: 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
@@ -66,7 +69,7 @@ function Home() {
           <FaBitcoin />
           <h1>Coin Tracker</h1>
         </LogoContainer>
-        <div>Toggle Switch</div>
+        <ToggleButton />
       </HomeHeaderContainer>
       <HomeMainContainer>
         <h1>COIN TRACKER</h1>
