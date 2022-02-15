@@ -113,6 +113,9 @@ const CoinInfo = styled.div`
   line-height: 1.4;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 425px) {
+    flex-direction: column-reverse;
+  }
   span {
     border: 1px solid ${(props) => props.theme.lineColor};
     padding: 0.5vh;
@@ -121,6 +124,10 @@ const CoinInfo = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 425px) {
+      font-size: 1rem;
+      padding: 0.3vh;
+    }
   }
   p {
     margin-right: 10px;
@@ -129,6 +136,13 @@ const CoinInfo = styled.div`
 
 const PercentInfo = styled.div`
   display: flex;
+  @media screen and (max-width: 425px) {
+    margin-top: 2vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const MainContentContainer = styled.div`
@@ -137,6 +151,11 @@ const MainContentContainer = styled.div`
   width: 80vw;
   height: 30vh;
   margin-top: 15vh;
+  @media screen and (max-width: 425px) {
+    margin-top: 2vh;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Button = styled.div`
@@ -150,6 +169,14 @@ const Button = styled.div`
   height: 10vh;
   margin-left: 10vw;
   animation: ${upAnimation} 1s ease-in-out;
+  @media screen and (max-width: 425px) {
+    font-size: 1.5rem;
+    padding: 1vh 1vw;
+    margin: 0;
+    margin-bottom: 5vh;
+    width: 100%;
+  }
+
   a {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.3);
@@ -164,10 +191,15 @@ const Button = styled.div`
 const DescripContainer = styled.div`
   display: flex:
   flex-direction: column;
-  justify-content: center
+  justify-content: center;
   width: 50%;
   margin-left:5vw;
   animation: ${upAnimation} 1s ease-in-out;
+  @media screen and (max-width: 425px) {
+    margin:0;
+    width: 100%;
+    margin-top:5vh;
+  }
 `;
 
 const DesTitle = styled.h1`
@@ -183,6 +215,10 @@ const DesContent = styled.div`
   font-size: 1.4rem;
   overflow-y: auto;
   text-align: center;
+  @media screen and (max-width: 425px) {
+    margin: 0;
+    width: 100%;
+  }
 `;
 
 function Coin() {

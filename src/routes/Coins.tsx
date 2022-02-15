@@ -48,7 +48,9 @@ const Coin = styled.li`
   align-items: center;
   justify-content: space-between;
   margin: 2vh auto;
-
+  @media screen and (max-width: 425px) {
+    height: 7vh;
+  }
   a {
     text-decoration: none;
     display: flex;
@@ -58,6 +60,9 @@ const Coin = styled.li`
     border-radius: 15px;
     padding: 1vh 2vh;
     margin-right: 3vh;
+    @media screen and (max-width: 425px) {
+      margin-right: 2vh;
+    }
     &:hover {
       color: ${(props) => props.theme.accentColor};
       transition: 1s;

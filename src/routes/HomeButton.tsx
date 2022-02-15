@@ -25,6 +25,9 @@ const HomeBtn = styled.div`
     animation: ${ButtonAnimation} 1s ease-in-out;
     animation-fill-mode: forwards;
   }
+  @media screen and (max-width: 425px) {
+    top: 13vh;
+  }
 `;
 
 function HomeButton() {

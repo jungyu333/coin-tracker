@@ -31,6 +31,9 @@ const ChartAnimation = keyframes`
 `;
 
 const BackButton = styled.div`
+  @media screen and (max-width: 425px) {
+    text-align: center;
+  }
   a {
     text-decoration: none;
     font-size: 1.4rem;
@@ -50,6 +53,9 @@ const ChartLoading = styled.span`
   margin-top: 10vh;
   width: 100%;
   text-align: center;
+  @media screen and (max-width: 425px) {
+    margin: 0;
+  }
 `;
 const ChartContainer = styled.div`
   width: 50%;
@@ -57,6 +63,12 @@ const ChartContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   animation: ${ChartAnimation} 1s ease-in-out;
+  @media screen and (max-width: 425px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 function Chart(props: ChartProps) {
